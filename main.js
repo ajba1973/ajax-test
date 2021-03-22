@@ -21,7 +21,7 @@ function getTableHeaders(obj) {
     });
 
     return `<tr>${tableHeaders}</tr>`;
-}
+};
 
 function writeToDocument(type) {
     var el = document.getElementById("data");
