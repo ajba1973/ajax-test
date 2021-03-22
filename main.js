@@ -21,20 +21,26 @@ function getTableHeaders(obj) {
     });
 
     return `<tr>${tableHeaders}</tr>`;
-};
+}
 
 function writeToDocument(type) {
     var el = document.getElementById("data");
     el.innerHTML = "";
 
     getData(type, function(data) {
+        var tableRows = [];
         data = data.results;
         var tableHeaders = getTableHeaders(data[0]);
 
         data.forEach(function(item) {
-            // el.innerHTML += "<p>" + item.name + "</p>";
+            var dataRow = [];
+
+            Object.keys(item).forEach(function(key) {
+                dataRow.push(`<td>${item[key]}</td>`);
+            });
+            tableRows.push(dataRow)
         });
 
-        el.innerHTML = `<table>${tableHeaders}</table>`;
+        el.innerHTML = `<table>${tableHeaders}${tableRows}</table>`;
     });
 }
